@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-blue: #1a90d9;
+  --color-brand-light: #e0f2fe;
+}
+
+@layer utilities {
+  .clip-bottom-wave {
+    clip-path: polygon(0 0, 100% 0, 100% 80%, 75% 100%, 50% 85%, 25% 100%, 0 80%);
+  }
+
+  .animate-flip-out {
+    animation: flipOut 0.3s ease-in forwards;
+    transform-origin: top;
+    backface-visibility: hidden;
+  }
+  .animate-flip-in {
+    animation: flipIn 0.3s ease-out forwards;
+    transform-origin: top;
+    backface-visibility: hidden;
+  }
+  
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+}
+
+@keyframes flipOut {
+  0% { transform: rotateX(0deg); opacity: 1; }
+  100% { transform: rotateX(-90deg); opacity: 0; }
+}
+
+@keyframes flipIn {
+  0% { transform: rotateX(90deg); opacity: 0; }
+  100% { transform: rotateX(0deg); opacity: 1; }
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: #f3f4f6;
+}
