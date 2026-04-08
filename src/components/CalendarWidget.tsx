@@ -8,7 +8,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const monthThemes = [
   { name: 'January', color: '#1d4ed8', image: 'https://images.unsplash.com/photo-1418985991508-e47386d96a71?auto=format&fit=crop&w=1000&q=80' },
-  { name: 'February', color: '#be185d', image: 'https://images.unsplash.com/photo-1549488344-c6a666e08dd1?auto=format&fit=crop&w=1000&q=80' },
+  { name: 'February', color: '#be185d', image: 'https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?auto=format&fit=crop&w=1000&q=80' },
   { name: 'March', color: '#047857', image: 'https://images.unsplash.com/photo-1462275646964-a0e3386b89fa?auto=format&fit=crop&w=1000&q=80' },
   { name: 'April', color: '#b45309', image: 'https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=1000&q=80' },
   { name: 'May', color: '#6d28d9', image: 'https://images.unsplash.com/photo-1464047736614-af63643285bf?auto=format&fit=crop&w=1000&q=80' },
