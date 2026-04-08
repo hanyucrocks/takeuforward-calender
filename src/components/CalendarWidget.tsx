@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { 
   format, addMonths, subMonths, startOfMonth, endOfMonth, 
-  startOfWeek, endOfWeek, isSameMonth, isSameDay, addDays,
+  startOfWeek, isSameMonth, isSameDay, addDays,
   isWithinInterval, isBefore, isAfter
 } from 'date-fns';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
@@ -155,16 +155,14 @@ export default function CalendarWidget() {
 
   const renderCells = () => {
     const monthStart = startOfMonth(currentMonth);
-    const monthEnd = endOfMonth(monthStart);
     const startDateGrid = startOfWeek(monthStart, { weekStartsOn: 1 });
-    const endDateGrid = endOfWeek(monthEnd, { weekStartsOn: 1 });
 
     const rows = [];
     let days = [];
     let day = startDateGrid;
     let formattedDate = "";
 
-    while (day <= endDateGrid) {
+    for (let rowLength = 0; rowLength < 6; rowLength++) {
       for (let i = 0; i < 7; i++) {
         formattedDate = format(day, "d");
         const cloneDay = day;
