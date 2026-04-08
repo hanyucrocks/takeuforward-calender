@@ -1,73 +1,47 @@
-# React + TypeScript + Vite
+# Dynamic Interactive Calendar Widget
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A high-fidelity, premium React calendar widget designed to simulate physical wall-calendar mechanics while leveraging beautiful digital theming to create an engaging user experience.
 
-Currently, two official plugins are available:
+## Premium Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **3D Page Flips:** Navigating between months triggers a spatial 3D CSS `rotateX` animation. The calendar seamlessly folds up and flips back down just like turning the page of a physical wall calendar.
+- **Dynamic Contextual Theming:** The widget has native situational awareness. Every month loads a customized, high-quality Unsplash hero image matched with a precisely calculated Tailwind CSS color palette (e.g., Spring Florals + Violet for May; Beaches + Ocean Blue for June) that trickles down to buttons, highlights, and borders.
+- **Robust Data Persistence:** Completely frontend-centric data synchronization. Memos, daily notes, and range notes trigger an automated sync with browser `localStorage`. Notes are completely preserved across tabs and sessions.
+- **Intelligent Mini-Badges:** Date-cells automatically calculate if they fall uniquely under a single saved note, or within a highlighted saved date range, popping up a beautifully formatted brand-colored indicator dot so you immediately see your data without having to search.
+- **Indian National Holidays:** Tracks major Indian secular holidays (Republic Day, Independence Day, Gandhi Jayanti). The widget renders a bright red `H` badge beneath the specific date and implements an interactive hover-tooltip detailing the holiday name.
+- **Jump to Today:** An instantaneous anchor point button that smoothly 3D-flips the user out of any month and straight back to the present day, dropping an assertive dark ring styling explicitly over the actual current date limit.
 
-## React Compiler
+## Engineering Design Choices
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Tailwind CSS v4 + Vanilla CSS Interop:** Tailwind manages layout and standard component styling to maintain an agile utility-first environment, while heavy spatial logic (`clip-path` hero waves, `@keyframe` physics) are extracted to standardized Vanilla CSS variables to ensure the complex layout avoids overwhelming JSX line pollution.
+- **Date-FNS over Complex Date Libraries:** Relied purely on `date-fns` for immutable, straightforward date mathematics ensuring rendering logic evaluates quickly without inflating the final Vite build bundle size.
+- **Client-Side First:** Strict adherence to frontend domain architecture. LocalStorage intercepts state data precisely during the `useEffect` reactive cycle to completely negate the latency and structural setup of a full database loop.
 
-## Expanding the ESLint configuration
+## How to Run Locally
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 1. Installation
+Clone the repository and install the dependencies:
+```bash
+git clone https://github.com/hanyucrocks/takeuforward-calender.git
+cd takeuforward-calendar
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 2. Start the Development Server
+Execute the start script to boot the local environment up:
+```bash
+npm run dev
 ```
+Navigate to `http://localhost:5173/` in your local browser.
+
+### 3. Sharing your Local Work remotely (LAN and WAN)
+* **Local Wi-Fi Network**: You can share the preview server with anyone on your local network natively via Vite:
+  ```bash
+  npm run dev -- --host
+  ```
+  *Copy the IP output provided and hand it to a device on your network.*
+* **Over the Internet**: To temporarily expose your local process to the broader internet via a secure tunnel, run:
+  ```bash
+  npx localtunnel --port 5173
+  ```
+  *This requires no configuration and gives you a fully functional public HTTPS URL!*
